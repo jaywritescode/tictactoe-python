@@ -3,6 +3,8 @@ import itertools
 import random
 import re
 
+from src.move import Move
+
 
 Name = Enum('Name', ['X', 'O'])
 
