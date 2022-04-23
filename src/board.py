@@ -3,24 +3,25 @@ from enum import Enum
 from more_itertools import all_equal, flatten
 
 
-Outcome = Enum('Outcome', ['X', 'O', 'DRAW'])
+Outcome = Enum("Outcome", ["X", "O", "DRAW"])
+
 
 class Board:
     ROWS = [
-            [(0, 0), (0, 1), (0, 2)],
-            [(1, 0), (1, 1), (1, 2)],
-            [(2, 0), (2, 1), (2, 2)],
-        ]
+        [(0, 0), (0, 1), (0, 2)],
+        [(1, 0), (1, 1), (1, 2)],
+        [(2, 0), (2, 1), (2, 2)],
+    ]
     COLUMNS = [
-            [(0, 0), (1, 0), (2, 0)],
-            [(0, 1), (1, 1), (2, 1)],
-            [(0, 2), (1, 2), (2, 2)],
-        ]
+        [(0, 0), (1, 0), (2, 0)],
+        [(0, 1), (1, 1), (2, 1)],
+        [(0, 2), (1, 2), (2, 2)],
+    ]
     DIAGONALS = [[(0, 0), (1, 1), (2, 2)], [(0, 2), (1, 1), (2, 0)]]
 
     def __init__(self):
         self.board = [[None for col in range(3)] for row in range(3)]
-    
+
     def __getitem__(self, coordinate):
         (row, col) = coordinate
         return self.board[row][col]
@@ -41,9 +42,13 @@ class Board:
             return Outcome.DRAW
 
     def __str__(self):
-        row = "{}|{}|{}"
-        sep = "-+-+-"
+        row = "{}|{}|{}\n"
+        sep = "-+-+-\n"
 
-        return sep.join(row).format(*[getattr(self.board[row, col], 'name', ' ') for col in range(3) for row in range(3)])
-    
-
+        return sep.join([row] * 3).format(
+            *[
+                getattr(self[row, col], "name", " ")
+                for col in range(3)
+                for row in range(3)
+            ]
+        )

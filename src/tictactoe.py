@@ -1,11 +1,13 @@
 from itertools import cycle
 
 from src.board import Board
-from src.player import KeyboardInterfacePlayer, Name, RandomChoicePlayer
+from src.players import KeyboardInterfacePlayer, Name, RandomChoicePlayer
 
 
 class TicTacToe:
-    def __init__(self, playerX_class=KeyboardInterfacePlayer, playerO_class=RandomChoicePlayer):
+    def __init__(
+        self, playerX_class=KeyboardInterfacePlayer, playerO_class=RandomChoicePlayer
+    ):
         self.board = Board()
         self.playerX = playerX_class(Name.X, self.board)
         self.playerO = playerO_class(Name.O, self.board)
