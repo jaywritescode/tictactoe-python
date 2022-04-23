@@ -28,6 +28,8 @@ class Board:
 
     def __setitem__(self, coordinate, value):
         (row, col) = coordinate
+        if self.board[row][col] is not None:
+            raise ValueError
         self.board[row][col] = value
 
     def check_for_game_over(self):
