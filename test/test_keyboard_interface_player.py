@@ -21,7 +21,7 @@ from src.tictactoe import TicTacToe
     ],
 )
 def test_player_one_get_move(input_value, expected_index):
-    with mock.patch("src.players.input", create=True) as mock_input:
+    with mock.patch("src.players.keyboard_interface_player.input", create=True) as mock_input:
         tictactoe = TicTacToe(playerX_class=KeyboardInterfacePlayer)
         mock_input.return_value = input_value
 
@@ -43,7 +43,7 @@ def test_player_one_get_move(input_value, expected_index):
     ],
 )
 def test_player_two_get_move(after_one_ply, input_value, expected_index):
-    with mock.patch("src.players.input", create=True) as mock_input:
+    with mock.patch("src.players.keyboard_interface_player.input", create=True) as mock_input:
         tictactoe = after_one_ply
         mock_input.return_value = input_value
 
@@ -52,7 +52,7 @@ def test_player_two_get_move(after_one_ply, input_value, expected_index):
 
 
 def test_cannot_play_at_occupied_coordinate(after_one_ply):
-    with mock.patch("src.players.input", create=True) as mock_input:
+    with mock.patch("src.players.keyboard_interface_player.input", create=True) as mock_input:
         tictactoe = after_one_ply
         mock_input.side_effect = ["3,2", "1,1"]
 

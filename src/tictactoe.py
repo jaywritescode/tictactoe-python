@@ -1,7 +1,9 @@
 from itertools import cycle
 
 from src.board import Board
-from src.players import KeyboardInterfacePlayer, Name, RandomChoicePlayer
+from src.player import Name
+from src.players.keyboard_interface_player import KeyboardInterfacePlayer
+from src.players.random_choice_player import RandomChoicePlayer
 
 
 class TicTacToe:
