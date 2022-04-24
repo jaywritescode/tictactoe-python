@@ -3,6 +3,7 @@ import itertools
 import random
 import re
 
+import minimax
 from src.move import Move
 
 
@@ -42,14 +43,12 @@ class KeyboardInterfacePlayer(AbstractPlayer):
             print("Invalid choice, try again.")
 
 
-class RandomChoicePlayer(AbstractPlayer):
+
+
+
+class MinimaxPlayer(AbstractPlayer):
     def __init__(self, name, game):
         super().__init__(name, game)
 
     def get_move(self):
-        empty_squares = [
-            (row, col)
-            for row, col in itertools.product([0, 1, 2], repeat=2)
-            if self.board[row, col] is None
-        ]
-        return Move(self, random.choice(empty_squares))
+        return minimax.minimax_decision(self.game)
