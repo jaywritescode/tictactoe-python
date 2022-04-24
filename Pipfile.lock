@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "86340ef11e82039f42eaa346272135695d32af1d515e2cbcc3b6c242409d322b"
+            "sha256": "68f26cdb1f92f78e05ffa7b784261595e84115d89069126346d7b3dc7eb5b844"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,11 @@
         ]
     },
     "default": {
+        "minimax": {
+            "editable": true,
+            "git": "https://github.com/jaywritescode/minimax-python.git",
+            "ref": "8e3131fabe56f1a84a2c79a386539baf1437db9a"
+        },
         "more-itertools": {
             "hashes": [
                 "sha256:43e6dd9942dffd72661a2c4ef383ad7da1e6a3e968a927ad7a6083ab410a688b",
@@ -141,11 +146,11 @@
         },
         "pytest": {
             "hashes": [
-                "sha256:841132caef6b1ad17a9afde46dc4f6cfa59a05f9555aae5151f73bdf2820ca63",
-                "sha256:92f723789a8fdd7180b6b06483874feca4c48a5c76968e03bb3e7f806a1869ea"
+                "sha256:13d0e3ccfc2b6e26be000cb6568c832ba67ba32e719443bfe725814d3c42433c",
+                "sha256:a06a0425453864a270bc45e71f783330a7428defb4230fb5e6a731fde06ecd45"
             ],
             "index": "pypi",
-            "version": "==7.1.1"
+            "version": "==7.1.2"
         },
         "tomli": {
             "hashes": [

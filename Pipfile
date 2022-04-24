@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 more-itertools = "*"
+minimax = {editable = true, ref = "v0.0.2", git = "https://github.com/jaywritescode/minimax-python.git"}
 
 [dev-packages]
 black = "*"
