@@ -1,10 +1,10 @@
 import re
 
 from src.move import Move
-from src.player import AbstractPlayer
+from src.player import Player
 
 
-class KeyboardInterfacePlayer(AbstractPlayer):
+class KeyboardInterfacePlayer(Player):
     def __init__(self, name, board):
         super().__init__(name, board)
 

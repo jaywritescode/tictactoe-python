@@ -2,10 +2,10 @@ import itertools
 import random
 
 from src.move import Move
-from src.player import AbstractPlayer
+from src.player import Player
 
 
-class RandomChoicePlayer(AbstractPlayer):
+class RandomChoicePlayer(Player):
     def __init__(self, name, game):
         super().__init__(name, game)
 
