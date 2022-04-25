@@ -1,7 +1,12 @@
+from dataclasses import dataclass
+
+from src.player import Player
+
+
+@dataclass(frozen=True)
 class Move:
-    def __init__(self, player, selection):
-        self.player = player
-        self.selection = selection
+    player: Player
+    coordinate: tuple[int, int]
 
     def apply(self, board):
-        board[self.selection] = self.player
+        board[self.coordinate] = self.player
