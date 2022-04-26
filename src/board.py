@@ -19,8 +19,11 @@ class Board:
     ]
     DIAGONALS = [[(0, 0), (1, 1), (2, 2)], [(0, 2), (1, 1), (2, 0)]]
 
-    def __init__(self):
-        self.board = [[None for col in range(3)] for row in range(3)]
+    def __init__(self, board=None):
+        if board is None:
+            self.board = [[None for col in range(3)] for row in range(3)]
+        else:
+            self.board = board
 
     def __getitem__(self, coordinate):
         (row, col) = coordinate
@@ -31,6 +34,9 @@ class Board:
         if self.board[row][col] is not None:
             raise ValueError
         self.board[row][col] = value
+
+    def do_move(self, move):
+        self[move.coordinates] = move.player
 
     def check_for_game_over(self):
         lines = Board.ROWS + Board.COLUMNS + Board.DIAGONALS
