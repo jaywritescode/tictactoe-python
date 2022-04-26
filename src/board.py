@@ -56,7 +56,7 @@ class Board:
         return sep.join([row] * 3).format(
             *[
                 getattr(self[row, col], "name", " ")
-                for col in range(3)
                 for row in range(3)
+                for col in range(3)
             ]
         )
