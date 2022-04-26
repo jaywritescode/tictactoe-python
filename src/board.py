@@ -36,7 +36,7 @@ class Board:
         self.squares[row][col] = value
 
     def do_move(self, move):
-        self[move.coordinates] = move.player
+        self[move.coordinate] = move.player
 
     def check_for_game_over(self):
         lines = Board.ROWS + Board.COLUMNS + Board.DIAGONALS
