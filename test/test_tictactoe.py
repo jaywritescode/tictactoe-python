@@ -13,7 +13,7 @@ def test_x_can_play(initial_state):
     )
 
     game.next()
-    assert_that(game.board).has_board(
+    assert_that(game.board).has_squares(
         [[None, None, None], [None, player, None], [None, None, None]]
     )
 
@@ -27,6 +27,6 @@ def test_o_can_play(after_one_ply):
     )
 
     game.next()
-    assert_that(game.board).has_board(
+    assert_that(game.board).has_squares(
         [[playerO, None, None], [None, None, None], [None, playerX, None]]
     )
