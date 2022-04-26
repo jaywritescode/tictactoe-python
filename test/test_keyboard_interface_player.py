@@ -28,7 +28,7 @@ def test_player_one_get_move(input_value, expected_index):
         mock_input.return_value = input_value
 
         move = tictactoe.playerX.get_move()
-        assert_that(move).has_player(tictactoe.playerX).has_selection(expected_index)
+        assert_that(move).has_player(tictactoe.playerX).has_coordinate(expected_index)
 
 
 @pytest.mark.parametrize(
@@ -53,7 +53,7 @@ def test_player_two_get_move(after_one_ply, input_value, expected_index):
         mock_input.return_value = input_value
 
         move = tictactoe.playerO.get_move()
-        assert_that(move).has_player(tictactoe.playerO).has_selection(expected_index)
+        assert_that(move).has_player(tictactoe.playerO).has_coordinate(expected_index)
 
 
 def test_cannot_play_at_occupied_coordinate(after_one_ply):
@@ -65,4 +65,4 @@ def test_cannot_play_at_occupied_coordinate(after_one_ply):
 
         move = tictactoe.playerO.get_move()
         assert_that(mock_input.call_count).is_equal_to(2)
-        assert_that(move).has_selection((0, 0))
+        assert_that(move).has_coordinate((0, 0))
