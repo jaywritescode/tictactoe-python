@@ -1,8 +1,5 @@
 from enum import Enum
 
-from src.move import Move
-
-
 Name = Enum("Name", ["X", "O"])
 
 
