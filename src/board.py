@@ -35,8 +35,8 @@ class Board:
             raise ValueError
         self.squares[row][col] = value
 
-    def do_move(self, move):
-        self[move.coordinate] = move.player
+    def do_move(self, player, move):
+        self[move] = player
 
     def check_for_game_over(self):
         lines = Board.ROWS + Board.COLUMNS + Board.DIAGONALS

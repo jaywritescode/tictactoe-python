@@ -1,9 +1,7 @@
 from assertpy import assert_that
 import pytest
-from src.board import Outcome
-from src.move import Move
 
-from src.player import Name
+from src.board import Outcome
 
 
 def test_getitem(after_five_plies, playerX, playerO):
@@ -27,12 +25,15 @@ def test_setitem_in_occupied_square(after_five_plies, playerO):
         board[1, 1] = playerO
 
 
-def test_do_move(after_five_plies, playerO):
-    board = after_five_plies.board
-    move = Move(player=playerO, coordinate=(0, 0))
+def test_do_move(after_five_plies):
+    game = after_five_plies
+    board = game.board
+    player = game.players.peek()
+    
+    move = (0, 0)
 
-    board.do_move(move)
-    assert_that(board[0, 0]).is_same_as(playerO)
+    board.do_move(player, move)
+    assert_that(board[move]).is_same_as(player)
 
 
 def test_check_for_game_over_winner_x(win_for_x):

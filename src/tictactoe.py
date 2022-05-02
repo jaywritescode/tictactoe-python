@@ -23,7 +23,9 @@ class TicTacToe:
 
     def next(self):
         current_player = next(self.players)
-        self.board.do_move(current_player.get_move())
+        move = current_player.get_move(self.board)
+
+        self.board.do_move(current_player, move)
         self.outcome = self.check_for_game_over()
         if not self.outcome:
             self.ply += 1

@@ -1,8 +1,7 @@
 from more_itertools import consume
 import pytest
-from src.player import Name, Player
-from src.players.keyboard_interface_player import KeyboardInterfacePlayer
 
+from src.player import Name, Player
 from src.tictactoe import TicTacToe
 
 

@@ -1,15 +1,15 @@
 from unittest.mock import MagicMock
 from assertpy import assert_that
 
-from src.move import Move
+from src.tictactoe import TicTacToe
 
 
-def test_x_can_play(initial_state):
-    game = initial_state
+def test_x_can_play():
+    game = TicTacToe()
+
     player = game.playerX
-
     player.get_move = MagicMock(
-        name="get_move", return_value=Move(game.playerX, (1, 1))
+        name="get_move", return_value=(1, 1)
     )
 
     game.next()
@@ -20,10 +20,10 @@ def test_x_can_play(initial_state):
 
 def test_o_can_play(after_one_ply):
     game = after_one_ply
+    
     playerX, playerO = game.playerX, game.playerO
-
     playerO.get_move = MagicMock(
-        name="get_move", return_value=Move(game.playerO, (0, 0))
+        name="get_move", return_value=(0, 0)
     )
 
     game.next()
