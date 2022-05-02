@@ -1,18 +1,15 @@
 from itertools import cycle
 
 from src.board import Board
-from src.player import Name
+from src.player import Name, Player
 from src.players.keyboard_interface_player import KeyboardInterfacePlayer
-from src.players.minimax_player import MinimaxPlayer
 
 
 class TicTacToe:
-    def __init__(
-        self, playerX_class=KeyboardInterfacePlayer, playerO_class=MinimaxPlayer
-    ):
+    def __init__(self):
         self.board = Board()
-        self.playerX = playerX_class(Name.X)
-        self.playerO = playerO_class(Name.O)
+        self.playerX = Player(Name.X)
+        self.playerO = Player(Name.O)
 
         self.players = cycle([self.playerX, self.playerO])
         self.outcome = None
