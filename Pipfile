@@ -11,6 +11,7 @@ minimax = {editable = true, ref = "v0.0.2", git = "https://github.com/jaywritesc
 black = "*"
 assertpy = "*"
 pytest = "*"
+pytest-repeat = "*"
 
 [requires]
 python_version = "3.10"
