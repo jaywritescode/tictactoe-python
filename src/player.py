@@ -4,9 +4,8 @@ Name = Enum("Name", ["X", "O"])
 
 
 class Player:
-    def __init__(self, name, board):
+    def __init__(self, name):
         self.name = name
-        self.board = board
 
     def get_move(self):
         raise NotImplemented

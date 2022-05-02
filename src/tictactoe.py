@@ -11,8 +11,8 @@ class TicTacToe:
         self, playerX_class=KeyboardInterfacePlayer, playerO_class=MinimaxPlayer
     ):
         self.board = Board()
-        self.playerX = playerX_class(Name.X, self.board)
-        self.playerO = playerO_class(Name.O, self.board)
+        self.playerX = playerX_class(Name.X)
+        self.playerO = playerO_class(Name.O)
 
         self.players = cycle([self.playerX, self.playerO])
         self.outcome = None
