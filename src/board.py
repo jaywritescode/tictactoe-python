@@ -42,7 +42,9 @@ class Board:
         lines = Board.ROWS + Board.COLUMNS + Board.DIAGONALS
         for line in lines:
             line_squares = [self[coords] for coords in line]
-            if all(square is not None for square in line_squares) and all_equal(line_squares):
+            if all(square is not None for square in line_squares) and all_equal(
+                line_squares
+            ):
                 player = line_squares[0]
                 return Outcome[player.name]
 

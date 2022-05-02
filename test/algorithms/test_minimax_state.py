@@ -1,18 +1,17 @@
 from assertpy import assert_that
 
-from src.algorithms import minimax
+# from src.algorithms import minimax
 from src.board import Board
 from src.move import Move
 from src.player import Name
 
-def test_successors_from_initial_board():
-    board = Board()
-    root = minimax.Node(board=board)
 
-    expected = root.successors
-    print(expected)
+# def test_successors_from_initial_board():
+#     board = Board()
+#     root = minimax.Node(board=board)
 
-
+#     expected = root.successors
+#     print(expected)
 
 
 # def test_initial_state():
