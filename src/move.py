@@ -7,6 +7,3 @@ from src.player import Player
 class Move:
     player: Player
     coordinate: tuple[int, int]
-
-    def apply(self, board):
-        board[self.coordinate] = self.player
