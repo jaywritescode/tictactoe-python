@@ -29,7 +29,7 @@ def test_do_move(after_five_plies):
     game = after_five_plies
     board = game.board
     player = game.players.peek()
-    
+
     move = (0, 0)
 
     board.do_move(player, move)

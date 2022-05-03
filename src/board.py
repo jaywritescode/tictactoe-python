@@ -1,4 +1,6 @@
 from enum import Enum
+import itertools
+from timeit import repeat
 
 from more_itertools import all_equal, flatten
 
@@ -34,6 +36,13 @@ class Board:
         if self.squares[row][col] is not None:
             raise ValueError
         self.squares[row][col] = value
+
+    def valid_moves(self):
+        return [
+            (row, col)
+            for row, col in itertools.product(range(3), repeat=2)
+            if not self[row, col]
+        ]
 
     def do_move(self, player, move):
         self[move] = player
