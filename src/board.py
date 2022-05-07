@@ -1,11 +1,21 @@
-from enum import Enum
+from enum import Enum, auto
 import itertools
-from timeit import repeat
 
 from more_itertools import all_equal, flatten
 
+class Outcome(Enum):
+    X = auto()
+    O = auto()
+    DRAW = auto()
 
-Outcome = Enum("Outcome", ["X", "O", "DRAW"])
+    @classmethod
+    def fromPlayer(cls, player):
+        return cls.fromPlayerName(player.name)
+
+    @classmethod
+    def fromPlayerName(cls, name):
+        return cls(name.value)
+
 
 
 class Board:
@@ -55,7 +65,7 @@ class Board:
                 line_squares
             ):
                 player = line_squares[0]
-                return Outcome[player.name]
+                return Outcome.fromPlayer(player)
 
         if all(square is not None for square in flatten(self.squares)):
             return Outcome.DRAW
