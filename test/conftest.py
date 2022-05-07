@@ -34,6 +34,13 @@ def after_one_ply(playerX):
 
 @pytest.fixture
 def after_five_plies(playerX, playerO):
+    """
+     | |O
+    -+-+-
+    X|X|O
+    -+-+-
+     | |X
+    """
     game = TicTacToe()
     game.playerX = playerX
     game.playerO = playerO
