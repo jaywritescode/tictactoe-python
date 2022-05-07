@@ -1,3 +1,3 @@
 class MoveSelectionStrategy:
-    def perform(self, board, player):
+    def perform(self, board):
         raise NotImplemented

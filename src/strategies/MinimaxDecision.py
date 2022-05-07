@@ -1,10 +1,15 @@
 from copy import deepcopy
 
 from src.board import Board
+from src.strategies.MoveSelectionStrategy import MoveSelectionStrategy
 
+class MinimaxDecision(MoveSelectionStrategy):
+    def __init__(self, player) -> None:
+        super().__init__()
+        self.player = player
 
-def perform(self, board, player):
-    root = Node(self, board, player)
+    def perform(self, board, player):
+        root = Node(self, board, player)
 
 
 class Node:

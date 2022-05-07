@@ -3,7 +3,7 @@ from src.strategies.MoveSelectionStrategy import MoveSelectionStrategy
 
 
 class AskHuman(MoveSelectionStrategy):
-    def perform(self, board, player):
+    def perform(self, board):
         while True:
             m = re.fullmatch(
                 r"(?P<row>\d).+(?P<col>\d)", input("Play where? (upper-right is 1,3) ")
