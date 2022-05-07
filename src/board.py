@@ -60,6 +60,9 @@ class Board:
         if all(square is not None for square in flatten(self.squares)):
             return Outcome.DRAW
 
+    def is_game_over(self):
+        return self.check_for_game_over() is not None
+
     def __str__(self):
         row = "{}|{}|{}\n"
         sep = "-+-+-\n"

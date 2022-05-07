@@ -1,24 +1,30 @@
-from dataclasses import dataclass
+from copy import deepcopy
+
+from src.board import Board
 
 
-def perform(self, board):
-    root = Node(board)
-
-
-@dataclass
-class Action:
-    move: tuple[int, int]
+def perform(self, board, player):
+    root = Node(self, board, player)
 
 
 class Node:
-    def __init__(self, board):
+    def __init__(self, board, player):
         self.state = board
+        self.player = player.name
 
     def successors(self):
-        pass
+        if self.is_terminal_state():
+            return []
+        
+        def successor(move):
+            board = deepcopy(self.state)
+            board.do_move(self.player, move)
+            return Node(board, self.player.opposite)
+        
+        return [successor(coordinate) for coordinate in self.state.valid_moves()]
 
     def is_terminal_state(self):
-        pass
+        return self.state.is_game_over()
 
     def utility(self):
-        pass
+        raise NotImplemented("is terminal node")

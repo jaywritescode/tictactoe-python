@@ -1,21 +1,22 @@
-from enum import Enum
+from enum import Enum, auto
 
 from src.strategies.RandomMoves import RandomMoves
 
-Name = Enum("Name", ["X", "O"])
+class Name(Enum):
+    X = auto()
+    O = auto()
 
+    @property
+    def opposite(self):
+        return Name.O if self is Name.X else Name.X 
 
 class Player:
     def __init__(self, name, strategy=RandomMoves()):
-        self._name = name
+        self.name = name
         self.strategy = strategy
-
-    @property
-    def name(self):
-        return self._name.name
 
     def get_move(self, board):
         return self.strategy.perform(board)
 
     def __str__(self):
-        return self.name
+        return self.name.name
