@@ -3,6 +3,7 @@ import itertools
 
 from more_itertools import all_equal, flatten
 
+
 class Outcome(Enum):
     X = auto()
     O = auto()
@@ -15,7 +16,6 @@ class Outcome(Enum):
     @classmethod
     def fromPlayerName(cls, name):
         return cls(name.value)
-
 
 
 class Board:
