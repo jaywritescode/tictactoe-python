@@ -1,6 +1,6 @@
 from enum import Enum, auto
 
-from src.strategies.RandomMoves import RandomMoves
+from src.strategies.factory import StrategyFactory
 
 
 class PlayerId:
@@ -21,9 +21,9 @@ class Piece(PlayerId, Enum):
 
 
 class Player(PlayerId):
-    def __init__(self, name, strategy=RandomMoves()):
+    def __init__(self, name, strategy):
         self.name = name
-        self.strategy = strategy
+        self.strategy = StrategyFactory(self).get(strategy)
 
     def get_move(self, board):
         return self.strategy.perform(board)

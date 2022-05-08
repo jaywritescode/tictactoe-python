@@ -7,10 +7,10 @@ from src.player import Piece, Player
 
 
 class TicTacToe:
-    def __init__(self):
+    def __init__(self, strategy_x):
         self.board = Board()
-        self.playerX = Player(Piece.X)
-        self.playerO = Player(Piece.O)
+        self.playerX = Player(Piece.X, strategy=strategy_x)
+        self.playerO = Player(Piece.O, strategy="random")
         self.ply = 1
 
         self.players = peekable(cycle([self.playerX, self.playerO]))
