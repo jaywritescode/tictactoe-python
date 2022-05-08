@@ -91,7 +91,9 @@ def test_utility_with_game_in_progress(after_five_plies):
 
 
 def test_utility_with_draw(drawn_game):
-    pass
+    game = drawn_game
+    node = Node(game.board, game.playerO)
+    assert_that(node.utility(game.playerX)).is_zero()
 
 
 def test_utility_with_win():
