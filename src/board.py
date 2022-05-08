@@ -55,17 +55,17 @@ class Board:
         ]
 
     def do_move(self, player, move):
-        self[move] = player
+        self[move] = player.piece()
 
     def check_for_game_over(self):
         lines = Board.ROWS + Board.COLUMNS + Board.DIAGONALS
         for line in lines:
             line_squares = [self[coords] for coords in line]
             if all(square is not None for square in line_squares) and all_equal(
-                line_squares
+                value.piece() for value in line_squares
             ):
-                player = line_squares[0]
-                return Outcome.fromPlayer(player)
+                player = line_squares[0].piece()
+                return Outcome.fromPlayerName(player)
 
         if all(square is not None for square in flatten(self.squares)):
             return Outcome.DRAW

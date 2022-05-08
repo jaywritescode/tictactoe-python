@@ -1,18 +1,18 @@
 from more_itertools import consume
 import pytest
 
-from src.player import Name, Player
+from src.player import Piece, Player
 from src.tictactoe import TicTacToe
 
 
 @pytest.fixture
 def playerX():
-    return Player(Name.X)
+    return Player(Piece.X)
 
 
 @pytest.fixture
 def playerO():
-    return Player(Name.O)
+    return Player(Piece.O)
 
 
 @pytest.fixture

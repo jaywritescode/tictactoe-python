@@ -3,14 +3,14 @@ from itertools import cycle
 from more_itertools import peekable
 
 from src.board import Board
-from src.player import Name, Player
+from src.player import Piece, Player
 
 
 class TicTacToe:
     def __init__(self):
         self.board = Board()
-        self.playerX = Player(Name.X)
-        self.playerO = Player(Name.O)
+        self.playerX = Player(Piece.X)
+        self.playerO = Player(Piece.O)
         self.ply = 1
 
         self.players = peekable(cycle([self.playerX, self.playerO]))
