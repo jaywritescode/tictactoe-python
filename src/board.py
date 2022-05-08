@@ -73,6 +73,14 @@ class Board:
     def is_game_over(self):
         return self.check_for_game_over() is not None
 
+    def matches(self, other):
+        def square_matches(s, t):
+            if s is None:
+                return t is None
+            return t is not None and s.piece() == t.piece()
+
+        return all(square_matches(self[row, col], other[row, col]) for col in range(3) for row in range(3))
+
     def __str__(self):
         row = "{}|{}|{}\n"
         sep = "-+-+-\n"

@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from src.board import Board
+from src.board import Board, Outcome
 from src.strategies.MoveSelectionStrategy import MoveSelectionStrategy
 
 
@@ -10,13 +10,33 @@ class MinimaxDecision(MoveSelectionStrategy):
         self.player = player
 
     def perform(self, board, player):
-        root = Node(self, board, player)
+        root = Node.fromBoard(self, board, player)
+
+        v = self.max_value(root)
+
+    def max_value(self, state):
+        if state.is_terminal_state():
+            return state.utility(self)
+
+        v = -float('inf')
+        for s in state.successors():
+            v = max(v, self.min_value(s))
+        return v
+
+    def min_value(self, state):
+        if state.is_terminal_state():
+            return state.utility(self)
+
+        v = float('inf')
+        for s in state.successors():
+            v = min(v, self.max_value(s))
+        return v
 
 
 class Node:
-    def __init__(self, board, player):
+    def __init__(self, board, piece):
         self.state = board
-        self.player = player.name
+        self.player = piece
 
     def successors(self):
         if self.is_terminal_state():
@@ -32,5 +52,19 @@ class Node:
     def is_terminal_state(self):
         return self.state.is_game_over()
 
-    def utility(self):
-        raise NotImplemented("is terminal node")
+    def utility(self, player):
+        outcome = self.state.check_for_game_over()
+
+        if outcome is None:
+            return None
+        if outcome is Outcome.DRAW:
+            return 0
+        if outcome is Outcome.fromPlayer(player):
+            return 1
+        else:
+            return -1
+
+    @classmethod
+    def fromBoard(cls, board, player):
+        state = [[board[r,c] and board[r,c].name for c in range(3)] for r in range(3)]
+        return cls(Board(state), player)
