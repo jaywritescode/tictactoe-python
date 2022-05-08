@@ -2,12 +2,13 @@ from assertpy import assert_that
 import pytest
 
 from src.board import Outcome
+from src.player import Piece
 
 
 def test_getitem(after_five_plies, playerX, playerO):
     board = after_five_plies.board
-    assert_that(board[1, 2]).is_same_as(playerO)
-    assert_that(board[2, 2]).is_same_as(playerX)
+    assert_that(board[1, 2]).is_same_as(Piece.O)
+    assert_that(board[2, 2]).is_same_as(Piece.X)
     assert_that(board[0, 0]).is_none
 
 
@@ -40,8 +41,8 @@ def test_check_for_game_over_winner_x(win_for_x):
     assert_that(win_for_x.check_for_game_over()).is_same_as(Outcome.X)
 
 
-def test_check_for_game_over_winner_o(win_for_o):
-    pass
+# def test_check_for_game_over_winner_o(win_for_o):
+#     pass
 
 
 def test_check_for_game_over_outcome_draw(drawn_game):

@@ -53,6 +53,13 @@ def after_five_plies():
 
 @pytest.fixture
 def x_to_play_and_win():
+    """
+    X| |X
+    -+-+-
+     |X|O
+    -+-+-
+    O|O|
+    """
     game = TicTacToe()
     game.board[1, 1] = Piece.X
     game.board[1, 2] = Piece.O
@@ -68,6 +75,13 @@ def x_to_play_and_win():
 
 @pytest.fixture
 def win_for_x(x_to_play_and_win):
+    """
+    X|X|X
+    -+-+-
+     |X|O
+    -+-+-
+    O|O|
+    """
     game = x_to_play_and_win
     game.board[0, 1] = Piece.X
 

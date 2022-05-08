@@ -96,9 +96,13 @@ def test_utility_with_draw(drawn_game):
     assert_that(node.utility(game.playerX)).is_zero()
 
 
-def test_utility_with_win():
-    pass
+def test_utility_with_win(win_for_x):
+    game = win_for_x
+    node = Node(game.board, game.playerO)
+    assert_that(node.utility(game.playerX)).is_equal_to(1)
 
 
-def test_utility_with_loss():
-    pass
+def test_utility_with_loss(win_for_x):
+    game = win_for_x
+    node = Node(game.board, game.playerO)
+    assert_that(node.utility(game.playerO)).is_equal_to(-1)

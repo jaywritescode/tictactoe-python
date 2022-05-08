@@ -66,5 +66,5 @@ class Node:
 
     @classmethod
     def fromBoard(cls, board, player):
-        state = [[board[r, c] and board[r, c].name for c in range(3)] for r in range(3)]
+        state = [[board[r, c] and board[r, c].piece() for c in range(3)] for r in range(3)]
         return cls(Board(state), player)
