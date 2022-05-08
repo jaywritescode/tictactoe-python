@@ -33,7 +33,7 @@ def test_do_move(after_five_plies):
     move = (0, 0)
 
     board.do_move(player, move)
-    assert_that(board[move]).is_same_as(player)
+    assert_that(board[move].piece()).is_same_as(player.piece())
 
 
 def test_check_for_game_over_winner_x(win_for_x):
