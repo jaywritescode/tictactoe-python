@@ -21,11 +21,9 @@ def initial_state():
 
 
 @pytest.fixture
-def after_one_ply(playerX):
+def after_one_ply():
     game = TicTacToe()
-    game.playerX = playerX
-
-    game.board[2, 1] = playerX
+    game.board[2, 1] = Piece.X
 
     consume(game.players, 1)
 
@@ -33,7 +31,7 @@ def after_one_ply(playerX):
 
 
 @pytest.fixture
-def after_five_plies(playerX, playerO):
+def after_five_plies():
     """
      | |O
     -+-+-
@@ -42,14 +40,11 @@ def after_five_plies(playerX, playerO):
      | |X
     """
     game = TicTacToe()
-    game.playerX = playerX
-    game.playerO = playerO
-
-    game.board[1, 1] = playerX
-    game.board[0, 2] = playerO
-    game.board[1, 0] = playerX
-    game.board[1, 2] = playerO
-    game.board[2, 2] = playerX
+    game.board[1, 1] = Piece.X
+    game.board[0, 2] = Piece.O
+    game.board[1, 0] = Piece.X
+    game.board[1, 2] = Piece.O
+    game.board[2, 2] = Piece.X
 
     consume(game.players, 5)
 
@@ -57,17 +52,14 @@ def after_five_plies(playerX, playerO):
 
 
 @pytest.fixture
-def x_to_play_and_win(playerX, playerO):
+def x_to_play_and_win():
     game = TicTacToe()
-    game.playerX = playerX
-    game.playerO = playerO
-
-    game.board[1, 1] = playerX
-    game.board[1, 2] = playerO
-    game.board[0, 2] = playerX
-    game.board[2, 0] = playerO
-    game.board[0, 0] = playerX
-    game.board[2, 1] = playerO
+    game.board[1, 1] = Piece.X
+    game.board[1, 2] = Piece.O
+    game.board[0, 2] = Piece.X
+    game.board[2, 0] = Piece.O
+    game.board[0, 0] = Piece.X
+    game.board[2, 1] = Piece.O
 
     consume(game.players, 6)
 
@@ -77,8 +69,7 @@ def x_to_play_and_win(playerX, playerO):
 @pytest.fixture
 def win_for_x(x_to_play_and_win):
     game = x_to_play_and_win
-
-    game.board[0, 1] = game.playerX
+    game.board[0, 1] = Piece.X
 
     consume(game.players, 1)
 
@@ -89,10 +80,10 @@ def win_for_x(x_to_play_and_win):
 def drawn_game(after_five_plies):
     game = after_five_plies
 
-    game.board[0, 0] = game.playerO
-    game.board[2, 0] = game.playerX
-    game.board[2, 1] = game.playerO
-    game.board[0, 1] = game.playerX
+    game.board[0, 0] = Piece.O
+    game.board[2, 0] = Piece.X
+    game.board[2, 1] = Piece.O
+    game.board[0, 1] = Piece.X
 
     consume(game.players, 4)
 
