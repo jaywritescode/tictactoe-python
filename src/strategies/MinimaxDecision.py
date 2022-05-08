@@ -18,7 +18,7 @@ class MinimaxDecision(MoveSelectionStrategy):
         if state.is_terminal_state():
             return state.utility(self)
 
-        v = -float('inf')
+        v = -float("inf")
         for s in state.successors():
             v = max(v, self.min_value(s))
         return v
@@ -27,7 +27,7 @@ class MinimaxDecision(MoveSelectionStrategy):
         if state.is_terminal_state():
             return state.utility(self)
 
-        v = float('inf')
+        v = float("inf")
         for s in state.successors():
             v = min(v, self.max_value(s))
         return v
@@ -66,5 +66,5 @@ class Node:
 
     @classmethod
     def fromBoard(cls, board, player):
-        state = [[board[r,c] and board[r,c].name for c in range(3)] for r in range(3)]
+        state = [[board[r, c] and board[r, c].name for c in range(3)] for r in range(3)]
         return cls(Board(state), player)

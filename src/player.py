@@ -3,7 +3,7 @@ from enum import Enum, auto
 from src.strategies.RandomMoves import RandomMoves
 
 
-class PlayerId():
+class PlayerId:
     def piece(self):
         raise NotImplemented
 

@@ -79,7 +79,11 @@ class Board:
                 return t is None
             return t is not None and s.piece() == t.piece()
 
-        return all(square_matches(self[row, col], other[row, col]) for col in range(3) for row in range(3))
+        return all(
+            square_matches(self[row, col], other[row, col])
+            for col in range(3)
+            for row in range(3)
+        )
 
     def __str__(self):
         row = "{}|{}|{}\n"

@@ -16,19 +16,55 @@ def test_successors_root_node(after_five_plies_node):
     node = after_five_plies_node
     successors = node.successors()
     assert_that(successors).is_length(4)
-    assert_that(successors).extracting('player').contains_only(Piece.X)
-    assert_that(successors).extracting('state', filter=lambda s: s.state.matches(Board([
-        [Piece.O, None, Piece.O], [Piece.X, Piece.X, Piece.O], [None, None, Piece.X]
-    ]))).is_not_empty()
-    assert_that(successors).extracting('state', filter=lambda s: s.state.matches(Board([
-        [None, Piece.O, Piece.O], [Piece.X, Piece.X, Piece.O], [None, None, Piece.X]
-    ]))).is_not_empty()
-    assert_that(successors).extracting('state', filter=lambda s: s.state.matches(Board([
-        [None, None, Piece.O], [Piece.X, Piece.X, Piece.O], [Piece.O, None, Piece.X]
-    ]))).is_not_empty()
-    assert_that(successors).extracting('state', filter=lambda s: s.state.matches(Board([
-        [None, None, Piece.O], [Piece.X, Piece.X, Piece.O], [None, Piece.O, Piece.X]
-    ]))).is_not_empty()
+    assert_that(successors).extracting("player").contains_only(Piece.X)
+    assert_that(successors).extracting(
+        "state",
+        filter=lambda s: s.state.matches(
+            Board(
+                [
+                    [Piece.O, None, Piece.O],
+                    [Piece.X, Piece.X, Piece.O],
+                    [None, None, Piece.X],
+                ]
+            )
+        ),
+    ).is_not_empty()
+    assert_that(successors).extracting(
+        "state",
+        filter=lambda s: s.state.matches(
+            Board(
+                [
+                    [None, Piece.O, Piece.O],
+                    [Piece.X, Piece.X, Piece.O],
+                    [None, None, Piece.X],
+                ]
+            )
+        ),
+    ).is_not_empty()
+    assert_that(successors).extracting(
+        "state",
+        filter=lambda s: s.state.matches(
+            Board(
+                [
+                    [None, None, Piece.O],
+                    [Piece.X, Piece.X, Piece.O],
+                    [Piece.O, None, Piece.X],
+                ]
+            )
+        ),
+    ).is_not_empty()
+    assert_that(successors).extracting(
+        "state",
+        filter=lambda s: s.state.matches(
+            Board(
+                [
+                    [None, None, Piece.O],
+                    [Piece.X, Piece.X, Piece.O],
+                    [None, Piece.O, Piece.X],
+                ]
+            )
+        ),
+    ).is_not_empty()
 
 
 def test_is_not_terminal_state(after_five_plies_node):
