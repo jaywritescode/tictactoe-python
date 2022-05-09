@@ -9,14 +9,14 @@ class MinimaxDecision(MoveSelectionStrategy):
         super().__init__()
         self.player = player
 
-    def perform(self, board, player):
-        root = Node.fromBoard(self, board, player)
+    def perform(self, board):
+        root = Node.fromBoard(self, board, self.player)
 
         v = self.max_value(root)
 
     def max_value(self, state):
         if state.is_terminal_state():
-            return state.utility(self)
+            return state.utility(self.player)
 
         v = -float("inf")
         for s in state.successors():
@@ -25,7 +25,7 @@ class MinimaxDecision(MoveSelectionStrategy):
 
     def min_value(self, state):
         if state.is_terminal_state():
-            return state.utility(self)
+            return state.utility(self.player)
 
         v = float("inf")
         for s in state.successors():
