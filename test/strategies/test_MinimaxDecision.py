@@ -1,9 +1,11 @@
 from assertpy import assert_that
+from more_itertools import consume
 import pytest
+
 from src.board import Board
 from src.player import Piece
-
 from src.strategies.MinimaxDecision import Node
+from src.tictactoe import TicTacToe
 
 
 @pytest.fixture
@@ -12,9 +14,50 @@ def after_five_plies_node(after_five_plies):
     return Node.fromBoard(board, after_five_plies.playerO)
 
 
+@pytest.fixture
+def blunder_by_o():
+    game = TicTacToe(strategy_x="minimax")
+    game.board[1, 1] = Piece.X
+    game.board[1, 0] = Piece.O
+    game.board[0, 1] = Piece.X
+    game.board[2, 1] = Piece.O
+
+    consume(game.players, 2)
+
+    return game
+
+
+@pytest.fixture
+def o_to_play_and_win():
+    game = TicTacToe(strategy_o="minimax")
+    game.board[1, 0] = Piece.X
+    game.board[1, 1] = Piece.O
+    game.board[0, 0] = Piece.X
+    game.board[2, 0] = Piece.O
+    game.board[2, 1] = Piece.X
+
+    consume(game.players, 5)
+
+    return game
+
+
+def test_perform(o_to_play_and_win):
+    game = o_to_play_and_win
+    strategy = game.playerO.strategy
+
+    assert_that(strategy.perform(game.board)).is_equal_to((0, 2))
+
+
+def test_perform_deeper_search(blunder_by_o):
+    game = blunder_by_o
+    strategy = game.playerX.strategy
+
+    assert_that(strategy.perform(game.board)).is_in((0, 0), (0, 2))
+
+
 def test_successors_root_node(after_five_plies_node):
     node = after_five_plies_node
-    successors = node.successors()
+    successors = node.successors
     assert_that(successors).is_length(4)
     assert_that(successors).extracting("player").contains_only(Piece.X)
     assert_that(successors).extracting(

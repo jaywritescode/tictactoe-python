@@ -1,4 +1,5 @@
 from copy import deepcopy
+from functools import cached_property
 
 from src.board import Board, Outcome
 from src.strategies.MoveSelectionStrategy import MoveSelectionStrategy
@@ -10,34 +11,40 @@ class MinimaxDecision(MoveSelectionStrategy):
         self.player = player
 
     def perform(self, board):
-        root = Node.fromBoard(self, board, self.player)
+        root = Node.fromBoard(board, self.player)
 
         v = self.max_value(root)
+        return max(root.successors, key=lambda n: n._utility).action
 
     def max_value(self, state):
         if state.is_terminal_state():
             return state.utility(self.player)
 
         v = -float("inf")
-        for s in state.successors():
+        for s in state.successors:
             v = max(v, self.min_value(s))
-        return v
+        state._utility = v
+        return state._utility
 
     def min_value(self, state):
         if state.is_terminal_state():
             return state.utility(self.player)
 
         v = float("inf")
-        for s in state.successors():
+        for s in state.successors:
             v = min(v, self.max_value(s))
-        return v
+        state._utility = v
+        return state._utility
 
 
 class Node:
-    def __init__(self, board, piece):
+    def __init__(self, board, piece, action=None):
         self.state = board
         self.player = piece
+        self.action = action
+        self._utility = None
 
+    @cached_property
     def successors(self):
         if self.is_terminal_state():
             return []
@@ -45,7 +52,7 @@ class Node:
         def successor(move):
             board = deepcopy(self.state)
             board.do_move(self.player, move)
-            return Node(board, self.player.opposite)
+            return Node(board, self.player.opposite, move)
 
         return [successor(coordinate) for coordinate in self.state.valid_moves()]
 
@@ -53,18 +60,25 @@ class Node:
         return self.state.is_game_over()
 
     def utility(self, player):
-        outcome = self.state.check_for_game_over()
+        if self._utility is not None:
+            return self._utility
 
+        outcome = self.state.check_for_game_over()
         if outcome is None:
             return None
+
         if outcome is Outcome.DRAW:
-            return 0
-        if outcome is Outcome.fromPlayer(player):
-            return 1
+            self._utility = 0
+        elif outcome is Outcome.fromPlayer(player):
+            self._utility = 1
         else:
-            return -1
+            self._utility = -1
+
+        return self._utility
 
     @classmethod
     def fromBoard(cls, board, player):
-        state = [[board[r, c] and board[r, c].piece() for c in range(3)] for r in range(3)]
+        state = [
+            [board[r, c] and board[r, c].piece() for c in range(3)] for r in range(3)
+        ]
         return cls(Board(state), player)
