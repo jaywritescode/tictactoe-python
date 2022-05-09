@@ -19,6 +19,17 @@ def after_one_ply():
 
     return game
 
+@pytest.fixture
+def blunder_by_o():
+    game = TicTacToe
+    game.board[1, 1] = Piece.X
+    game.board[1, 0] = Piece.O
+    game.board[0, 1] = Piece.X
+    game.board[2, 1] = Piece.O
+
+    consume(game.players, 2)
+
+    return game
 
 @pytest.fixture
 def after_five_plies():
