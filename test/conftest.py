@@ -6,16 +6,6 @@ from src.tictactoe import TicTacToe
 
 
 @pytest.fixture
-def playerX():
-    return Player(Piece.X)
-
-
-@pytest.fixture
-def playerO():
-    return Player(Piece.O)
-
-
-@pytest.fixture
 def initial_state():
     return TicTacToe()
 

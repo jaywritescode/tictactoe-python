@@ -7,7 +7,7 @@ from src.player import Piece, Player
 
 
 class TicTacToe:
-    def __init__(self, strategy_x, strategy_o):
+    def __init__(self, strategy_x='random', strategy_o='random'):
         self.board = Board()
         self.playerX = Player(Piece.X, strategy=strategy_x)
         self.playerO = Player(Piece.O, strategy=strategy_o)

@@ -5,25 +5,25 @@ from src.board import Outcome
 from src.player import Piece
 
 
-def test_getitem(after_five_plies, playerX, playerO):
+def test_getitem(after_five_plies):
     board = after_five_plies.board
     assert_that(board[1, 2]).is_same_as(Piece.O)
     assert_that(board[2, 2]).is_same_as(Piece.X)
     assert_that(board[0, 0]).is_none
 
 
-def test_setitem_in_empty_square(after_five_plies, playerO):
+def test_setitem_in_empty_square(after_five_plies):
     board = after_five_plies.board
 
-    board[0, 0] = playerO
-    assert_that(board[0, 0]).is_same_as(playerO)
+    board[0, 0] = Piece.O
+    assert_that(board[0, 0]).is_same_as(Piece.O)
 
 
-def test_setitem_in_occupied_square(after_five_plies, playerO):
+def test_setitem_in_occupied_square(after_five_plies):
     board = after_five_plies.board
 
     with pytest.raises(ValueError):
-        board[1, 1] = playerO
+        board[1, 1] = Piece.O
 
 
 def test_do_move(after_five_plies):
